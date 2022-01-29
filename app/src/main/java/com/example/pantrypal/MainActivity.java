@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import com.example.pantrypalnew.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -8,15 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
         android:theme="@style/Theme.PantryPal">
         <activity android:name=".MainActivity"
-                android:exported = "true">
-=======
-        android:theme="@style/Theme.PantryPalNew">
-        <activity android:name="com.example.pantrypal.MainActivity"
             android:exported = "true">
->>>>>>> 02706ee10cfb3fd8c577b8d5c220a3ba0b3a8f55
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
