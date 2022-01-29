@@ -62,9 +62,12 @@ public class Pantry {
 
         JSONArray myJson = response.getBody().getArray();
 
+        String currName;
+        String currImage;
+
         for (int i = 0; i < 15; i++) {
-            String currName = myJson.getJSONObject(i).getString("name");
-            String currImage = myJson.getJSONObject(i).getString("image");
+            currName = myJson.getJSONObject(i).getString("name");
+            currImage = myJson.getJSONObject(i).getString("image");
             Ingredient currIng = new Ingredient(currName, currImage);
             ingrs.add(currIng);
         }
@@ -81,28 +84,50 @@ public class Pantry {
     public Recipe[] displayRecipes() {
 
         if (recipesUpToDate = false) {
-            currentRecipes = findRecipes();
+            this.currentRecipes = findRecipes();
             recipesUpToDate = true;
         }
-        return currentRecipes;
+        return this.currentRecipes;
     }
 
+    //use api call "search recipe by ingrediants" using the array of names ingrNames
+    //create a recipe object for each returned recipe
+    //return array of these recipe objects (each recipe will have many null attributes because full summary api call is not made yet)
     public Recipe[] findRecipes() {
 
         //parse myPantry array for ingredients and their names
         int mPLength = myPantry.size();
-        String[] ingrNames = new String[mPLength];
+        String ingrNames = "";
+        Recipe[] recipes = new Recipe[15];
         
         for (int i = 0; i < mPLength; i++) {
-            ingrNames[i] = myPantry.get(i).getName();
+            if (i < mPLength-1) {
+                ingrNames = ingrNames + myPantry.get(i).getName() + ",";
+            } else {
+                ingrNames = ingrNames + myPantry.get(i).getName();
+            }
         }
-        Recipe[] recipes = new Recipe[15];
 
+        //ignore pantry is set to true, idk if we want that or not
+        HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=" + ingrNames + "&number=15&ignorePantry=true&ranking=2")
+                .header("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .header("x-rapidapi-key", "0135d0b49cmsh637396520474835p1dcc8ajsnf406561e2803")
+                .asJson();
 
+        JSONArray myJson = response.getBody().getArray();
 
-        //use api call "search recipe by ingrediants" using the array of names ingrNames
-        //create a recipe object for each returned recipe
-        //return array of these recipe objects (each recipe will have many null attributes because full summary api call is not made yet)
+        int currID;
+        String currTitle;
+        String currImage;
+
+        for (int i = 0; i < 15; i++) {
+            currID = myJson.getJSONObject(i).getInt("id");
+            currTitle = myJson.getJSONObject(i).getString("title");
+            currImage = myJson.getJSONObject(i).getString("image");
+            Recipe currRecipe = new Recipe(currID, currImage, currTitle);
+            recipes[i] = currRecipe;
+        }
+
         return recipes;
     }
 
