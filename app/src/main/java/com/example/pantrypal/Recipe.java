@@ -1,5 +1,7 @@
 package com.example.pantrypal;
 
+import kong.unirest.JsonNode;
+
 public class Recipe {
     
     int ID; //non-null
@@ -15,10 +17,6 @@ public class Recipe {
         this.ID = inID;
         this.image = inImage;
         this.title = inTitle;
-    }
-
-    public void initInstructions() {
-        //use Analyze Recipe Instructions api call to populate instructions array attribute
     }
 
     public void initInfo() {
