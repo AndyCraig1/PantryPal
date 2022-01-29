@@ -73,11 +73,11 @@ public class Recipe {
     }
 
     public String[] getInstructions() {
-        return this.instructions[];
+        return this.instructions;
     }
 
     public Ingredient[] getIngredients() {
-        return this.ingredients[];
+        return this.ingredients;
     }
 
 }
