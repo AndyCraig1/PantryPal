@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/mypantry"
+        android:id="@+id/myPantryFragment"
         android:enabled="true"
         android:icon="@drawable/mypantry_icon"
         android:title="@string/mypantry_string"/>
     <item
-        android:id="@+id/recipes"
+        android:id="@+id/recipeFragment"
         android:enabled="true"
         android:icon="@drawable/recipe_icon"
         android:title="@string/recipe_string"/>
 
     <item
-        android:id = "@+id/search"
+        android:id = "@+id/searchFragment"
         android:enabled = "true"
-        android:icon = "@drawable/search_icon"
+        android:icon = "@drawable/ic_search_icon"
         android:title = "@string/search_string" />
 </menu>

@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">PantryPalNew</string>
-    <string name ="mypantry_string">My Pantry</string>
-    <string name ="recipe_string">Recipes</string>
-    <string name ="search_string">Search</string>
+    <string name="app_name">PantryPal</string>
+    <string name="mypantry_string">My Pantry</string>
+    <string name="recipe_string">Recipes</string>
+    <string name="search_string">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

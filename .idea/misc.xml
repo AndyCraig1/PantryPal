@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPal/app/src/main/res/layout/activity_main.xml" value="0.23550724637681159" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalNew/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalNew/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_my_pantry.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_recipe.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_search.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/listview_item.xml" value="0.1" />
+        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/menu/search_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
