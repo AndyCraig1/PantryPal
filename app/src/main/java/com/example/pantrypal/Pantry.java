@@ -2,6 +2,10 @@ package com.example.pantrypal;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.net.URLEncoder;
+
+import kong.unirest.*;
+
 public class Pantry {
 
     ArrayList<Ingredient> myPantry = new ArrayList<Ingredient>();
