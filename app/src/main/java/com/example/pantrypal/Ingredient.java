@@ -5,10 +5,10 @@ public class Ingredient {
     int ID;
     String image; //non-null
     String unit;
-
-    public Ingredient(String name, String image) {
+    
+    public Ingredient(String inName, String inImage) {
         this.name = inName;
-        this.image = inImage;
+        this.image = "https//whatever/" + inImage;
     }
 
     public void setAmount(float inAmount) {
