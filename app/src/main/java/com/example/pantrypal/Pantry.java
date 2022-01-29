@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Pantry {
 
     ArrayList<Ingredient> myPantry = new ArrayList<Ingredient>();
+    boolean recipesUpToDate = false;
+    Recipe[] currentRecipes = new Recipe[15];
 
     public Pantry() throws IOException {
         //read pantry that is saved in text file and intialize
@@ -54,6 +56,16 @@ public class Pantry {
         //appends ingr to myPantry[]
         Ingredient ingrObj = new Ingredient(ingr, img);
         myPantry.add(ingrObj);
+        recipesUpToDate = false;
+    }
+
+    public Recipe[] displayRecipes() {
+
+        if (recipesUpToDate = false) {
+            currentRecipes = findRecipes();
+            recipesUpToDate = true;
+        }
+        return currentRecipes;
     }
 
     public Recipe[] findRecipes() {
@@ -65,7 +77,7 @@ public class Pantry {
         for (int i = 0; i < mPLength; i++) {
             ingrNames[i] = myPantry.get(i).getName();
         }
-        Recipe[] recipes = new Recipe[5];
+        Recipe[] recipes = new Recipe[15];
         //use api call "search recipe by ingrediants" using the array of names ingrNames
         //create a recipe object for each returned recipe
         //return array of these recipe objects (each recipe will have many null attributes because full summary api call is not made yet)
