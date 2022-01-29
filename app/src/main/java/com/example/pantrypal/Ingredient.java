@@ -1,3 +1,5 @@
+package com.example.pantrypal;
+
 public class Ingredient {
     
     float amount;
@@ -40,14 +42,14 @@ public class Ingredient {
     }
 
     public String getImage() {
-        return this.Image;
+        return this.image;
     }
 
     public void setUnit(String inUnit) {
-        this.unit = inUnit
+        this.unit = inUnit;
     }
 
-    public void getUnit() {
+    public String getUnit() {
         return this.unit;
     }
 

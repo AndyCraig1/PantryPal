@@ -1,3 +1,5 @@
+package com.example.pantrypal;
+
 public class Recipe {
     
     int ID; //non-null
