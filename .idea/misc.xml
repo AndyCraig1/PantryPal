@@ -3,19 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_my_pantry.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_recipe.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/fragment_search.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/layout/listview_item.xml" value="0.1" />
-        <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalGUI/app/src/main/res/menu/search_menu.xml" value="0.1" />
-=======
         <entry key="..\:/Users/Andy Craig/Desktop/PantryPal/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Andy Craig/Desktop/PantryPal/app/src/main/res/layout/fragment_my_pantry.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/Andy Craig/Desktop/PantryPal/app/src/main/res/layout/fragment_search.xml" value="0.22" />
+        <entry key="..\:/Users/Andy Craig/Desktop/PantryPal/app/src/main/res/layout/frontview.xml" value="0.22" />
         <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPal/app/src/main/res/layout/activity_main.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalNew/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/HP USER/AndroidStudioProjects/PantryPalNew/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
->>>>>>> 02706ee10cfb3fd8c577b8d5c220a3ba0b3a8f55
       </map>
     </option>
   </component>

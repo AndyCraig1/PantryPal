@@ -5,7 +5,14 @@ plugins {
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
-
+    packagingOptions {
+        exclude 'mozilla/public-suffix-list.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
     defaultConfig {
         applicationId "com.example.pantrypal"
         minSdkVersion 16
@@ -37,6 +44,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.4.0'
     implementation 'androidx.navigation:navigation-ui:2.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
