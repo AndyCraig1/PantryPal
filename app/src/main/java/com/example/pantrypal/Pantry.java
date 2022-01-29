@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.net.URLEncoder;
 
 import kong.unirest.*;
+import kong.unirest.json.JSONArray;
+import kong.unirest.json.JSONObject;
 
 public class Pantry {
 
@@ -45,14 +47,27 @@ public class Pantry {
         }
     }
 
-    public Ingredient[] search(String item) {
-        //api call for user input "item" that returns a list of ingredients
-        //parse json
-        //create ingred objects for each ingrdiant (using name and img)
-        
-        int numResults = 10;
-        Ingredient[] ingrs = new Ingredient[numResults];
-        //return ingred array
+    //api call for user input "item" that returns a list of ingredients
+    //parse json
+    //create ingred objects for each ingrdiant (using name and img)
+    //return ingred array
+    public ArrayList<Ingredient> search(String item) {
+
+        ArrayList<Ingredient> ingrs = new ArrayList<Ingredient>();
+
+        HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=" + item + "&number=15")
+                .header("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .header("x-rapidapi-key", "0135d0b49cmsh637396520474835p1dcc8ajsnf406561e2803")
+                .asJson();
+
+        JSONArray myJson = response.getBody().getArray();
+
+        for (int i = 0; i < 15; i++) {
+            String currName = myJson.getJSONObject(i).getString("name");
+            String currImage = myJson.getJSONObject(i).getString("image");
+            Ingredient currIng = new Ingredient(currName, currImage);
+            ingrs.add(currIng);
+        }
         return ingrs;
     }
 
@@ -82,6 +97,9 @@ public class Pantry {
             ingrNames[i] = myPantry.get(i).getName();
         }
         Recipe[] recipes = new Recipe[15];
+
+
+
         //use api call "search recipe by ingrediants" using the array of names ingrNames
         //create a recipe object for each returned recipe
         //return array of these recipe objects (each recipe will have many null attributes because full summary api call is not made yet)
