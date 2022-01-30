@@ -1,27 +1,60 @@
 package com.example.pantrypal;
 
+import java.util.ArrayList;
+
 import kong.unirest.JsonNode;
+import kong.unirest.*;
+import kong.unirest.json.JSONArray;
+import kong.unirest.json.JSONObject;
 
 public class Recipe {
     
     int ID; //non-null
     String image; //non-null
-    int servings;
     String sourceURL;
+    int servings;
     int minutes;
     String title; //non-null
-    String[] instructions;
-    Ingredient[] ingredients;
+    String instructions;
+    ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     public Recipe(int inID, String inImage, String inTitle) {
         this.ID = inID;
         this.image = inImage;
         this.title = inTitle;
     }
+    //use get Recipe Information api call to populate attributes servings, minutes, etc.
+    //loop through ingrediants given by that api call and put each one into an ingrediant object, then put those in arraylist ingredients
+    public void initAttributes() {
+        HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + this.getID() + "/information")
+                .header("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
+                .header("x-rapidapi-key", "0135d0b49cmsh637396520474835p1dcc8ajsnf406561e2803")
+                .asJson();
 
-    public void initInfo() {
-        //use get Recipe Information api call to populate attributes servings, minutes, etc.
-        //loop through ingrediants given by that api call and put each one into an ingrediant object, then put those in attribute ingredients[]
+        JSONObject obj = new JSONObject(response);
+
+        this.servings = obj.getInt("servings");
+        this.minutes = obj.getInt("readyInMinutes");
+        this.sourceURL = obj.getString("sourceUrl");
+        this.instructions = obj.getString("instructions");
+
+        JSONArray ingArr = obj.getJSONArray("extendedIngredients");
+
+        String currName;
+        String currImage;
+        float currAmount;
+        String currUnit;
+
+        for (int i = 0; i < ingArr.length(); i++) {
+            currName = ingArr.getJSONObject(i).getString("name");
+            currImage = ingArr.getJSONObject(i).getString("image");
+            currAmount = ingArr.getJSONObject(i).getFloat("amount");
+            currUnit = ingArr.getJSONObject(i).getString("unit");
+            Ingredient currIng = new Ingredient(currName, currImage, currAmount, currUnit);
+            this.ingredients.add(currIng);
+        }
+
+
     }
 
     public int getID() {
@@ -72,11 +105,11 @@ public class Recipe {
         this.title = inTitle;
     }
 
-    public String[] getInstructions() {
+    public String getInstructions() {
         return this.instructions;
     }
 
-    public Ingredient[] getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
 
