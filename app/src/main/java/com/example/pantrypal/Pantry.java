@@ -1,9 +1,13 @@
 package com.example.pantrypal;
 
+import android.content.Context;
+import android.util.Log;
+
 import android.content.SharedPreferences;
 import android.content.*;
 
 import androidx.annotation.Nullable;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,36 +25,6 @@ public class Pantry implements SharedPreferences{
     boolean recipesUpToDate = false;
     Recipe[] currentRecipes = new Recipe[15];
 
-    public Pantry(){
-        this.myPantry.add(new Ingredient("dick2","apple.jpg"));
-        //read pantry that is saved in text file and intialize
-        //add each item to myPantry[]
-        /*
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader("assets\\savedPantry.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        int commaIndex;
-        String line = null;
-        try {
-            line = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        while ((line) != null) {
-            try {
-                line = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            commaIndex = line.indexOf(",");
-            myPantry.add(new Ingredient(line.substring(0,commaIndex),line.substring(commaIndex + 1)));
-        }
-        */
-
-    }
     public void saveIngredient(Ingredient i) {
         if (null == this.myPantry) {
             this.myPantry = new ArrayList<Ingredient>();
@@ -61,19 +35,56 @@ public class Pantry implements SharedPreferences{
 
     }
 
-    public void saveToFile() {
-        //saves myPantry to a text file so that myPantry can persist between sessions
-        //could be called after every addToPantry operation, at set time intervals, or upon closure of the app
-        PrintStream fileStream = null;
+    public Pantry(Context ctx) {
+        //read pantry that is saved in text file and intialize
+        //add each item to myPantry[]
+        int charInt;
+        char currChar;
+        String currString = "";
+        String currName = "";
         try {
-            fileStream = new PrintStream(new File("savedPantry.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            InputStreamReader inputStreamReader = new InputStreamReader(ctx.openFileInput("savedPantry.txt"));
+            while(true) {
+                charInt = inputStreamReader.read();
+                if (charInt == -1) {
+                    break;
+                }
+                currChar = (char)charInt;
+
+                if (currChar == ',') {
+                    currName = currString;
+                    currString = "";
+                }
+                else if (currChar == '-') {
+                    addToPantry(currName, currString);
+                    currString = "";
+                } else {
+                    currString = currString + currChar;
+                }
+
+            }
+            ctx.deleteFile("savedPantry.txt");
+            inputStreamReader.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
 
+
+    }
+
+    public void writeToFile(Context ctx) {
+        String saveData = "";
         int mPLength = myPantry.size();
         for (int i = 0; i < mPLength; i++) {
-            fileStream.println(myPantry.get(i).getName() + "," + myPantry.get(i).getImage());
+            saveData = saveData + myPantry.get(i).getName() + "," + myPantry.get(i).getImage() + "-";
+        }
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput("savedPantry.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(saveData);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 
