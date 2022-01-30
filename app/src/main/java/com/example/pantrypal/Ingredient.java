@@ -13,6 +13,13 @@ public class Ingredient {
         this.image = "https//whatever/" + inImage;
     }
 
+    public Ingredient(String inName, String inImage, float inAmount, String inUnit) {
+        this.name = inName;
+        this.image = "https//whatever/" + inImage;
+        this.amount = inAmount;
+        this.unit = inUnit;
+    }
+
     public void setAmount(float inAmount) {
         this.amount = inAmount;
     }
