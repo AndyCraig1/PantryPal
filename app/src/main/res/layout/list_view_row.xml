@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_button"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/list_text"
+            android:layout_width="194dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="left|center_vertical"
+            android:text="MsgType"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/list_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:insetLeft="20dp"
+            android:insetTop="20dp"
+            android:insetRight="20dp"
+            android:insetBottom="20dp"
+            android:textSize="8sp"
+            app:backgroundTint="#29DF30"
+            app:elevation="8dp"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp" />
+
+
+</LinearLayout>

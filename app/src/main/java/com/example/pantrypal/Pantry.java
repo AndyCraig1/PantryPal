@@ -3,24 +3,41 @@ package com.example.pantrypal;
 import android.content.Context;
 import android.util.Log;
 
+import android.content.SharedPreferences;
+import android.content.*;
+
+import androidx.annotation.Nullable;
+
+
 import java.io.*;
 import java.util.ArrayList;
 import java.net.URLEncoder;
+import java.util.Map;
+import java.util.Set;
 
 import kong.unirest.*;
 import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
 
-public class Pantry {
+public class Pantry implements SharedPreferences{
 
     ArrayList<Ingredient> myPantry = new ArrayList<Ingredient>();
     boolean recipesUpToDate = false;
     Recipe[] currentRecipes = new Recipe[15];
 
+    public void saveIngredient(Ingredient i) {
+        if (null == this.myPantry) {
+            this.myPantry = new ArrayList<Ingredient>();
+        }
+        this.myPantry.add(i);
+
+        // save the task list to preference
+
+    }
+
     public Pantry(Context ctx) {
         //read pantry that is saved in text file and intialize
         //add each item to myPantry[]
-
         int charInt;
         char currChar;
         String currString = "";
@@ -159,4 +176,60 @@ public class Pantry {
         return this.myPantry;
     }
 
+    @Override
+    public Map<String, ?> getAll() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getString(String s, @Nullable String s1) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Set<String> getStringSet(String s, @Nullable Set<String> set) {
+        return null;
+    }
+
+    @Override
+    public int getInt(String s, int i) {
+        return 0;
+    }
+
+    @Override
+    public long getLong(String s, long l) {
+        return 0;
+    }
+
+    @Override
+    public float getFloat(String s, float v) {
+        return 0;
+    }
+
+    @Override
+    public boolean getBoolean(String s, boolean b) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(String s) {
+        return false;
+    }
+
+    @Override
+    public Editor edit() {
+        return null;
+    }
+
+    @Override
+    public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+
+    }
+
+    @Override
+    public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener onSharedPreferenceChangeListener) {
+
+    }
 }
