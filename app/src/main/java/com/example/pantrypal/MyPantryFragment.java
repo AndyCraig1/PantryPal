@@ -76,10 +76,11 @@ public class MyPantryFragment extends Fragment {
       //  IngList.add(new Ingredient("rhubarb","rhubarb.jpg"));
 
        // IngList.add(new Ingredient("pepper","pepper.jpg"));
-        MainActivity main = (MainActivity) getActivity();
-        CustomAdapter customAdapter = new CustomAdapter(getActivity(), main.getThePantry().getPantry());
-
-        listView.setAdapter(customAdapter);
+       Pantry thePantry = new Pantry(getActivity());
+       if (thePantry.getPantry().size() >0){
+           CustomAdapter customAdapter = new CustomAdapter(getActivity(),thePantry.getPantry());
+           listView.setAdapter(customAdapter);
+       }
         return view;
     }
 

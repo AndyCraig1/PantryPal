@@ -10,12 +10,12 @@ public class Ingredient {
     
     public Ingredient(String inName, String inImage) {
         this.name = inName;
-        this.image = "https://spoonacular.com/cdn/ingredients_100x100/" + inImage;
+        this.image = inImage;
     }
 
     public Ingredient(String inName, String inImage, float inAmount, String inUnit) {
         this.name = inName;
-        this.image = "https//whatever/" + inImage;
+        this.image = "https://spoonacular.com/cdn/ingredients_100x100/" + inImage;
         this.amount = inAmount;
         this.unit = inUnit;
     }
@@ -50,6 +50,9 @@ public class Ingredient {
 
     public String getImage() {
         return this.image;
+    }
+    public String getUrl() {
+        return "https://spoonacular.com/cdn/ingredients_100x100/"+this.image;
     }
 
     public void setUnit(String inUnit) {

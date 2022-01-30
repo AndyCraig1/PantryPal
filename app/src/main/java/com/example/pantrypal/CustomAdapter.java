@@ -71,7 +71,9 @@ class CustomAdapter extends MainActivity implements ListAdapter{
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Pantry pantry = new Pantry(context);
+                    pantry.addToPantry(currentRow.getName(), currentRow.getImage());
+                    pantry.writeToFile(context);
                     LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(context);
                     View popupView = inflater.inflate(R.layout.addtopantry_popup, null);
 
@@ -103,7 +105,7 @@ class CustomAdapter extends MainActivity implements ListAdapter{
 
 
             Picasso.get()
-                    .load(currentRow.getImage())
+                    .load(currentRow.getUrl())
                     .into(imag);
         }
         return convertView;

@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         navController.navigate(R.id.myPantryFragment);
         SharedPreferences prefs = getSharedPreferences("data\\data\\shared_prefs\\", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-
-        thePantry = new Pantry();
+        StrictMode.ThreadPolicy gfgPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(gfgPolicy);
 
 
     }

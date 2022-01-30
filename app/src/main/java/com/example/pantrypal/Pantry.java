@@ -5,15 +5,17 @@ import android.util.Log;
 
 import android.content.SharedPreferences;
 import android.content.*;
-
+import android.os.StrictMode;
+//import org.hamcrest.*;
 import androidx.annotation.Nullable;
-
-
 import java.io.*;
 import java.util.ArrayList;
 import java.net.URLEncoder;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import kong.unirest.*;
 import kong.unirest.json.JSONArray;
@@ -55,7 +57,7 @@ public class Pantry implements SharedPreferences{
                     currName = currString;
                     currString = "";
                 }
-                else if (currChar == '-') {
+                else if (currChar == '#') {
                     addToPantry(currName, currString);
                     currString = "";
                 } else {
@@ -63,7 +65,7 @@ public class Pantry implements SharedPreferences{
                 }
 
             }
-            ctx.deleteFile("savedPantry.txt");
+            //ctx.deleteFile("savedPantry.txt");
             inputStreamReader.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -76,7 +78,7 @@ public class Pantry implements SharedPreferences{
         String saveData = "";
         int mPLength = myPantry.size();
         for (int i = 0; i < mPLength; i++) {
-            saveData = saveData + myPantry.get(i).getName() + "," + myPantry.get(i).getImage() + "-";
+            saveData = saveData + myPantry.get(i).getName() + "," + myPantry.get(i).getImage() + "#";
         }
 
         try {
@@ -92,28 +94,8 @@ public class Pantry implements SharedPreferences{
     //parse json
     //create ingred objects for each ingrdiant (using name and img)
     //return ingred array
-    public ArrayList<Ingredient> search(String item) {
 
-        ArrayList<Ingredient> ingrs = new ArrayList<Ingredient>();
 
-        HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/autocomplete?query=" + item + "&number=15")
-                .header("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
-                .header("x-rapidapi-key", "0135d0b49cmsh637396520474835p1dcc8ajsnf406561e2803")
-                .asJson();
-
-        JSONArray myJson = response.getBody().getArray();
-
-        String currName;
-        String currImage;
-
-        for (int i = 0; i < 15; i++) {
-            currName = myJson.getJSONObject(i).getString("name");
-            currImage = myJson.getJSONObject(i).getString("image");
-            Ingredient currIng = new Ingredient(currName, currImage);
-            ingrs.add(currIng);
-        }
-        return ingrs;
-    }
 
     public void addToPantry(String ingr, String img) {
         //appends ingr to myPantry[]
