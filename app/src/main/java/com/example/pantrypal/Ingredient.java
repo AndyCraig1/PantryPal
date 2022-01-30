@@ -10,7 +10,7 @@ public class Ingredient {
     
     public Ingredient(String inName, String inImage) {
         this.name = inName;
-        this.image = "https//whatever/" + inImage;
+        this.image = "https://spoonacular.com/cdn/ingredients_100x100/" + inImage;
     }
 
     public Ingredient(String inName, String inImage, float inAmount, String inUnit) {

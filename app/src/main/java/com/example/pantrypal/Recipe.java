@@ -53,8 +53,6 @@ public class Recipe {
             Ingredient currIng = new Ingredient(currName, currImage, currAmount, currUnit);
             this.ingredients.add(currIng);
         }
-
-
     }
 
     public int getID() {
