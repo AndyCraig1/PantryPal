@@ -65,7 +65,7 @@ public class Recipe {
         this.ID = inID;
     }
 
-    public String getImage() {
+    public String getImageID() {
         return this.image;
     }
 
