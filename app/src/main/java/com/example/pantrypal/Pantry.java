@@ -122,7 +122,7 @@ public class Pantry implements SharedPreferences{
         int mPLength = myPantry.size();
         String ingrNames = "";
         Recipe[] recipes = new Recipe[15];
-        
+
         for (int i = 0; i < mPLength; i++) {
             if (i < mPLength-1) {
                 ingrNames = ingrNames + myPantry.get(i).getName() + ",";

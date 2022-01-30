@@ -12,7 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-1dp"
-        android:dividerHeight="5dp" />
+        android:layout_marginTop="34dp"
+        android:layout_marginBottom="300dp"
+        android:dividerHeight="5dp"></ListView>
+
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="213dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="515dp"
+        android:text="Reset Pantry"
+        android:layout_centerHorizontal="true"
+        app:backgroundTint="#FF0000" />
+
 
 </RelativeLayout>

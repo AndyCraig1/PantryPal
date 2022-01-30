@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -78,9 +79,18 @@ public class MyPantryFragment extends Fragment {
        // IngList.add(new Ingredient("pepper","pepper.jpg"));
        Pantry thePantry = new Pantry(getActivity());
        if (thePantry.getPantry().size() >0){
-           CustomAdapter customAdapter = new CustomAdapter(getActivity(),thePantry.getPantry());
+           CustomAdapter2 customAdapter = new CustomAdapter2(getActivity(),thePantry.getPantry());
            listView.setAdapter(customAdapter);
        }
+        Button button = (Button) view.findViewById(R.id.button_clear);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                getActivity().deleteFile("savedPantry.txt");
+            }
+        });
         return view;
     }
 

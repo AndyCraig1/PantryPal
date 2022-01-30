@@ -20,7 +20,7 @@ public class Recipe {
 
     public Recipe(int inID, String inImage, String inTitle) {
         this.ID = inID;
-        this.image = "https://spoonacular.com/recipeImages/" + inImage;
+        this.image = inImage;
         this.title = inTitle;
     }
     //use get Recipe Information api call to populate attributes servings, minutes, etc.
@@ -31,28 +31,7 @@ public class Recipe {
                 .header("x-rapidapi-key", "0135d0b49cmsh637396520474835p1dcc8ajsnf406561e2803")
                 .asJson();
 
-        JSONObject obj = new JSONObject(response);
 
-        this.servings = obj.getInt("servings");
-        this.minutes = obj.getInt("readyInMinutes");
-        this.sourceURL = obj.getString("sourceUrl");
-        this.instructions = obj.getString("instructions");
-
-        JSONArray ingArr = obj.getJSONArray("extendedIngredients");
-
-        String currName;
-        String currImage;
-        float currAmount;
-        String currUnit;
-
-        for (int i = 0; i < ingArr.length(); i++) {
-            currName = ingArr.getJSONObject(i).getString("name");
-            currImage = ingArr.getJSONObject(i).getString("image");
-            currAmount = ingArr.getJSONObject(i).getFloat("amount");
-            currUnit = ingArr.getJSONObject(i).getString("unit");
-            Ingredient currIng = new Ingredient(currName, currImage, currAmount, currUnit);
-            this.ingredients.add(currIng);
-        }
     }
 
     public int getID() {
@@ -64,6 +43,9 @@ public class Recipe {
     }
 
     public String getImageID() {
+        return this.image;
+    }
+    public String getImageUrl() {
         return this.image;
     }
 
@@ -105,6 +87,9 @@ public class Recipe {
 
     public String getInstructions() {
         return this.instructions;
+    }
+    public void setInstructions(String inst) {
+        this.instructions = inst;
     }
 
     public ArrayList<Ingredient> getIngredients() {
