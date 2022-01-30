@@ -1,20 +1,23 @@
 package com.example.pantrypal;
 import android.content.Context;
-import androidx.annotation.LayoutRes;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import android.app.Activity;
+import android.app.FragmentManager;
 
 import com.squareup.picasso.Picasso;
 
@@ -65,18 +68,21 @@ public class CustomListview implements ListAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null) {
             convertView = layoutInflater.inflate(R.layout.listview_layout, parent, false);
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
             ImageView image = (ImageView) convertView.findViewById(R.id.recipeImage);
             TextView name = (TextView) convertView.findViewById(R.id.recipeName);
             Recipe currentRecipe = (Recipe) recipeList.get(position);
 
             Picasso.get().load(currentRecipe.getImageID()).fit().into(image);
             name.setText(currentRecipe.getTitle());
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentActivity activity = (FragmentActivity)(rContext);
+                    RecipeDialogFragment recipeDialogFragment = new RecipeDialogFragment(recipeList.get(position));
+                    recipeDialogFragment.show(activity.getSupportFragmentManager(), "MyFragment");
+                }
+            });
         }
         return convertView;
     }

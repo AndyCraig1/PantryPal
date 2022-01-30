@@ -20,7 +20,7 @@ public class Recipe {
 
     public Recipe(int inID, String inImage, String inTitle) {
         this.ID = inID;
-        this.image = inImage;
+        this.image = "https://spoonacular.com/recipeImages/" + inImage;
         this.title = inTitle;
     }
     //use get Recipe Information api call to populate attributes servings, minutes, etc.

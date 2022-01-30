@@ -9,7 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class recipeDialogFragment extends DialogFragment {
+public class RecipeDialogFragment extends DialogFragment {
+
+    private Recipe recipe;
+    public RecipeDialogFragment(Recipe recipe) {
+        recipe = recipe;
+    }
 
     @Nullable
     @Override
