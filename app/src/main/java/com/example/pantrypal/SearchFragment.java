@@ -82,4 +82,6 @@ public class SearchFragment extends Fragment {
         listView.setAdapter(customAdapter);
         return view;
     }
+
+
 }

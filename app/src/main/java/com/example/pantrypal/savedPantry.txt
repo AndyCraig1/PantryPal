@@ -1,0 +1,4 @@
+apple,apple.jpg
+rhubarb,rhubarb.jpg
+applesauce,applesauce.jpg
+pineapple,pineapple.jpg

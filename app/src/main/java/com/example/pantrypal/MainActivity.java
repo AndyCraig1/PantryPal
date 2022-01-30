@@ -8,18 +8,27 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.SearchView;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    public Pantry thePantry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +47,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNav, navController);
         navController.navigate(R.id.myPantryFragment);
+        SharedPreferences prefs = getSharedPreferences("data\\data\\shared_prefs\\", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
 
+        thePantry = new Pantry();
 
 
     }
+    public Pantry getThePantry(){
+        return thePantry;
+    }
+
+
 
 
 

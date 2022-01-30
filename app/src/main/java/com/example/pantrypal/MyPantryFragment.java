@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +57,30 @@ public class MyPantryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_pantry, container, false);
+        // Inflate the layout for this fragment
+
+        View view = inflater.inflate(R.layout.fragment_my_pantry, container, false);
+        ListView listView = (ListView) view.findViewById(R.id.ingListView);
+
+        ArrayList<Ingredient> IngList = new ArrayList<Ingredient>();
+       // IngList.add(new Ingredient("apple","apple.jpg"));
+      //  IngList.add(new Ingredient("rhubarb","rhubarb.jpg"));
+
+       // IngList.add(new Ingredient("pepper","pepper.jpg"));
+        MainActivity main = (MainActivity) getActivity();
+        CustomAdapter customAdapter = new CustomAdapter(getActivity(), main.getThePantry().getPantry());
+
+        listView.setAdapter(customAdapter);
+        return view;
     }
+
 }
